@@ -44,6 +44,21 @@ public:
             this->matrix.push_back(elems);
     }
 
+    std::vector<std::vector<T>>& GetMatrix()
+    {
+        return this->matrix;
+    }
+
+    const int& GetRows()
+    {
+        return this->rows;
+    }
+
+    const int& GetCols()
+    {
+        return this->cols;
+    }
+
     Matrix& operator+(const Matrix& matrix)
     {
         if (this->rows == matrix.rows && this->cols == matrix.cols)
