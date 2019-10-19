@@ -29,6 +29,21 @@ public:
             this->matrix.push_back(row);
     }
 
+    void InitZero(int rows, int cols)
+    {
+        this->matrix.clear();
+
+        this->rows = rows;
+        this->cols = cols;
+
+        std::vector<T> elems{};
+        for (auto c = 0; c < cols; c++)
+            elems.push_back(0);
+
+        for (auto r = 0; r < rows; r++)
+            this->matrix.push_back(elems);
+    }
+
     Matrix& operator+(const Matrix& matrix)
     {
         if (this->rows == matrix.rows && this->cols == matrix.cols)
@@ -88,6 +103,15 @@ public:
     {
         if (this->cols == matrix.rows)
         {
+            Matrix* mtx = new Matrix{};
+            mtx->InitZero(this->rows, matrix.cols);
+
+            for (auto r = 0; r < this->rows; r++)
+                for (auto c = 0; c < matrix.cols; c++)
+                    for (auto k = 0; k < this->cols; k++)
+                        mtx->matrix[r][c] += this->matrix[r][k] * matrix.matrix[k][c];
+
+            return *mtx;
         }
     }
 
