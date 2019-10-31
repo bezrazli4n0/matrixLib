@@ -29,6 +29,11 @@ public:
             this->matrix.push_back(row);
     }
 
+    const T& GetValue(int row, int col)
+    {
+        return this->matrix[row][col];
+    }
+
     void InitZero(int rows, int cols)
     {
         this->matrix.clear();
